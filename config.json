@@ -1,0 +1,9 @@
+{
+  "latest_sdk_path": "PUBG SDK/PUBG SDK 2608.1.1.67",
+  "previous_sdk_path": "PUBG SDK/PUBG SDK 2607.1.2.3",
+  "base_hashmap_path": "data/base_hashmap_2606.json",
+  "ue4_reference_path": "data/ue4_reference.json",
+  "custom_overrides_path": "data/custom_overrides.json",
+  "usmap_path": "data/usmap/TslGame_04_07_2026.usmap",
+  "output_dir": "output"
+}

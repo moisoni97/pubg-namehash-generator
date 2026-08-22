@@ -1,0 +1,15 @@
+{
+  "*8148d9ac28": "RowStruct",
+  "*94e90f7066": "RowStruct",
+  "*9f297fac03": "RowStruct",
+  "*3845ea526d": "WeaponInspectMontage",
+  "*4dd7dc0674": "InspectLocomotionBlendSpace",
+  "*27f0ca83a8": "FPPLocomotionBlendSpace",
+  "*4aa8bfd36a": "SkinPresetName",
+  "*f56b337097": "TslEquipSkinData",
+  "*c247cb7ae8": "CustomizableObjectSkinGuidMale",
+  "*5cf1986b81": "CustomizableObjectSkinGuidFemale",
+  "*d85827e15a": "SkinApplicationType",
+  "*7b78d477a5": "Default",
+  "*9d76ee1bed": "ParamName"
+}

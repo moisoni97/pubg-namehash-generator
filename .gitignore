@@ -1,0 +1,18 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# SDK dumps
+PUBG SDK/*
+!PUBG SDK/.gitkeep
+!PUBG SDK/readme.txt
+
+# Environments & IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.venv/
+venv/
+ENV/
