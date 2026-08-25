@@ -84,7 +84,7 @@ class StructInfo:
 
 class HeaderParser:
     PROP_PATTERN = re.compile(
-        r"^([A-Za-z0-9_<>:,\s\*]+)\s+(\w+)(?:\[(\d+)\])?;\s*//\s*(0x[0-9A-Fa-f]+)(?:\((0x[0-9A-Fa-f]+)\))?(?:\s*mask\s*(0x[0-9A-Fa-f]+))?"
+        r"^([A-Za-z0-9_<>:,\s\*]+?)\s+(\w+)(?:\[(\d+)\])?(?:\s*:\s*\d+)?;\s*//\s*(0x[0-9A-Fa-f]+)(?:\((0x[0-9A-Fa-f]+)\))?(?:\s*mask\s*(0x[0-9A-Fa-f]+))?"
     )
     STRUCT_PATTERN = re.compile(
         r"(?:struct|class) (?:alignas\(\d+\) )?(\w+)(?: : public (\w+))?[^{]*\{([^}]+)\}"
