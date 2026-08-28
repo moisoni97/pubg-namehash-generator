@@ -11,6 +11,7 @@ PUBG periodically applies name obfuscation across reflection properties in engin
 - **Standard UE4 Engine Resolver**: Automatically resolves obfuscated properties in Unreal Engine classes (`UDataTable`, `AActor`, `UPrimitiveComponent`, etc.).
 - **Multi-SDK Structural Diffing**: Tracks property offsets, sizes, types, and bitfields across consecutive game patches.
 - **Obfuscated Hierarchy Pairing**: Links obfuscated super-structs (e.g. `F_bd1601cf88` <-> `F_8dac437b7a`) to resolve internal member properties.
+- **Input Asset Ingestion**: Automatically scans exported JSON asset files (e.g. WeaponGunData, SkinItemTable, Blueprints, etc.) dropped into `input/` and resolves all their hashes.
 - **Multi-Version Chain Lineage**: Traces properties across versions (`2606` -> `2607` -> `2608` -> future) to retain community-verified names.
 - **Dual Outputs**:
   - `PUBGNameHashMap.json`: Comprehensive multi-version database ready to drop directly into CUE4Parse.
@@ -47,10 +48,14 @@ Generated files will be saved to the `output/` directory:
    {
      "latest_sdk_path": "PUBG SDK/PUBG SDK NEW.x.x.x",
      "previous_sdk_path": "PUBG SDK/PUBG SDK LAST.y.y.y",
-     "base_hashmap_path": "data/base_hashmap_2606.json",
+     "base_hashmap_paths": [
+       "data/base_hashmap_2606.json",
+       "data/base_hashmap_2607.json"
+     ],
      "ue4_reference_path": "data/ue4_reference.json",
      "custom_overrides_path": "data/custom_overrides.json",
      "usmap_path": "data/usmap/TslGame_04_07_2026.usmap",
+     "input_dir": "input",
      "output_dir": "output"
    }
    ```
@@ -80,6 +85,7 @@ PUBG NameHash Generator/
 │   ├── ue_resolver.py          # UE4 engine reflection resolver
 │   ├── struct_differ.py        # Multi-SDK structural diffing & alignment engine
 │   └── generator.py            # Pipeline orchestrator & exporter
+├── input/                      # Drop exported JSON asset files here to resolve
 ├── PUBG SDK/                   # Dropped SDK header dumps
 └── output/                     # Generated JSONs & reports
 ```

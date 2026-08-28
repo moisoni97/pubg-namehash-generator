@@ -1,10 +1,12 @@
 ============================================================
 PUBG NameHash Generator - Summary Report
 ============================================================
-Execution Time:             1.25 seconds
-Total Multi-Version Hashes: 889
-Latest Active Hashes:       471
-Tracked Lineage Records:    349
+Execution Time:             1.31 seconds
+Total Multi-Version Hashes: 1286
+Latest Active Hashes:       831
+Tracked Lineage Records:    1731
+Input Files Scanned:        0
+Input Hashes Resolved:      0
 RowStruct Hash (Latest):    *8148d9ac28
 RowStruct Hashes (All):     *8148d9ac28, *94e90f7066, *9f297fac03
 ============================================================

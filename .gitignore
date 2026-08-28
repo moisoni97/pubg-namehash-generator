@@ -8,6 +8,11 @@ PUBG SDK/*
 !PUBG SDK/.gitkeep
 !PUBG SDK/readme.txt
 
+# JSON assets
+input/*
+!input/.gitkeep
+!input/readme.txt
+
 # Environments & IDEs
 .vscode/
 .idea/

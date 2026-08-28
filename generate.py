@@ -32,6 +32,14 @@ def main():
         help="Override path to reference USMAP file",
     )
     parser.add_argument(
+        "-b", "--baselines",
+        help="Override path to directory containing baseline hashmaps",
+    )
+    parser.add_argument(
+        "-i", "--input",
+        help="Override path to input assets directory (containing exported JSONs)",
+    )
+    parser.add_argument(
         "-o", "--output",
         help="Override path to output directory",
     )
@@ -52,16 +60,28 @@ def main():
         config["previous_sdk_path"] = args.previous
     if args.usmap:
         config["usmap_path"] = args.usmap
+    if args.baselines:
+        config["base_hashmaps_dir"] = args.baselines
+    if args.input:
+        config["input_dir"] = args.input
     if args.output:
         config["output_dir"] = args.output
+
+    if "base_hashmap_paths" in config and isinstance(config["base_hashmap_paths"], list):
+        config["base_hashmap_paths"] = [
+            os.path.normpath(os.path.join(PROJECT_ROOT, p)) if not os.path.isabs(p) else p
+            for p in config["base_hashmap_paths"]
+        ]
 
     for k in [
         "latest_sdk_path",
         "previous_sdk_path",
         "base_hashmap_path",
+        "base_hashmaps_dir",
         "ue4_reference_path",
         "custom_overrides_path",
         "usmap_path",
+        "input_dir",
         "output_dir",
     ]:
         if config.get(k) and not os.path.isabs(config[k]):
