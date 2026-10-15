@@ -230,6 +230,52 @@ class StructDiffer:
                             )
                         )
 
+        # Pass 3: Type-sequence alignment across shifted/added/removed property blocks
+        p_types = [p.type for p in p_props]
+        l_types = [p.type for p in l_props]
+        type_matcher = difflib.SequenceMatcher(None, p_types, l_types)
+        for tag, i1, i2, j1, j2 in type_matcher.get_opcodes():
+            if tag == "equal":
+                for pi, li in zip(range(i1, i2), range(j1, j2)):
+                    p_p = p_props[pi]
+                    l_p = l_props[li]
+                    if l_p.hash_key in self.resolved_mappings:
+                        continue
+                    clean_name = p_names[pi]
+                    if (
+                        l_p.is_obfuscated
+                        and clean_name
+                        and clean_name.strip()
+                        and not clean_name.startswith("*")
+                        and not clean_name.startswith("_")
+                    ):
+                        valid_name = clean_name.strip()
+                        if valid_name in used_names:
+                            continue
+                        if abs(p_p.offset - l_p.offset) > 256:
+                            continue
+                        if not self._is_type_compatible(
+                            p_p.type,
+                            l_p.type,
+                            p_p.is_bitfield,
+                            l_p.is_bitfield,
+                            p_p.size,
+                            l_p.size,
+                        ):
+                            continue
+                        used_names.add(valid_name)
+                        self.resolved_mappings[l_p.hash_key] = valid_name
+                        self.transitions.append(
+                            VersionTransition(
+                                prev_hash=p_p.hash_key,
+                                latest_hash=l_p.hash_key,
+                                struct_name=latest_s.clean_name,
+                                prop_offset=l_p.offset,
+                                prop_type=l_p.type,
+                                name=valid_name,
+                            )
+                        )
+
 
 def diff_usmap_to_sdk(
     usmap_structs: Dict[str, UsmapStruct],
