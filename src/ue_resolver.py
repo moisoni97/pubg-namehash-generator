@@ -15,19 +15,33 @@ class UEResolver:
         ("UDataTable", 0x0030): "RowStruct",
 
         # CameraShake
+        ("CameraShake", 0x0028): "bSingleInstance",
+        ("CameraShake", 0x002C): "OscillationDuration",
         ("CameraShake", 0x0030): "bSingleInstance",
+        ("CameraShake", 0x0030): "OscillationBlendInTime",
         ("CameraShake", 0x0034): "OscillationDuration",
+        ("CameraShake", 0x0034): "OscillationBlendOutTime",
         ("CameraShake", 0x0038): "OscillationBlendInTime",
+        ("CameraShake", 0x0038): "RotOscillation",
         ("CameraShake", 0x003C): "OscillationBlendOutTime",
         ("CameraShake", 0x0040): "RotOscillation",
+        ("CameraShake", 0x005C): "LocOscillation",
         ("CameraShake", 0x0064): "LocOscillation",
+        ("CameraShake", 0x0080): "FOVOscillation",
         ("CameraShake", 0x0088): "FOVOscillation",
+        ("UCameraShake", 0x0028): "bSingleInstance",
+        ("UCameraShake", 0x002C): "OscillationDuration",
         ("UCameraShake", 0x0030): "bSingleInstance",
+        ("UCameraShake", 0x0030): "OscillationBlendInTime",
         ("UCameraShake", 0x0034): "OscillationDuration",
+        ("UCameraShake", 0x0034): "OscillationBlendOutTime",
         ("UCameraShake", 0x0038): "OscillationBlendInTime",
+        ("UCameraShake", 0x0038): "RotOscillation",
         ("UCameraShake", 0x003C): "OscillationBlendOutTime",
         ("UCameraShake", 0x0040): "RotOscillation",
+        ("UCameraShake", 0x005C): "LocOscillation",
         ("UCameraShake", 0x0064): "LocOscillation",
+        ("UCameraShake", 0x0080): "FOVOscillation",
         ("UCameraShake", 0x0088): "FOVOscillation",
 
         # FOscillator
@@ -148,17 +162,32 @@ class UEResolver:
         resolved: Dict[str, str] = {}
 
         for s_name, struct_info in structs.items():
+            existing_names = {p.name for p in struct_info.props if not p.is_obfuscated}
+            used_names = set(existing_names)
             for prop in struct_info.props:
                 if prop.is_obfuscated:
                     key = (s_name, prop.offset)
                     raw_key = (struct_info.raw_name, prop.offset)
                     clean_key = (struct_info.clean_name or s_name, prop.offset)
+                    name = None
                     if key in self.CORE_ENGINE_MAP:
-                        resolved[prop.hash_key] = self.CORE_ENGINE_MAP[key]
+                        name = self.CORE_ENGINE_MAP[key]
                     elif raw_key in self.CORE_ENGINE_MAP:
-                        resolved[prop.hash_key] = self.CORE_ENGINE_MAP[raw_key]
+                        name = self.CORE_ENGINE_MAP[raw_key]
                     elif clean_key in self.CORE_ENGINE_MAP:
-                        resolved[prop.hash_key] = self.CORE_ENGINE_MAP[clean_key]
+                        name = self.CORE_ENGINE_MAP[clean_key]
+
+                    if name:
+                        if name in used_names:
+                            continue
+                        if name == "bSingleInstance" and not (prop.type == "bool" or prop.is_bitfield):
+                            continue
+                        if name == "OscillationDuration" and prop.type not in ("float", "double"):
+                            continue
+                        if name == "RowStruct" and not ("*" in prop.type or "UScriptStruct" in prop.type):
+                            continue
+                        used_names.add(name)
+                        resolved[prop.hash_key] = name
 
         # Signature matching for oscillator and parameter structs
         for s_name, struct_info in structs.items():

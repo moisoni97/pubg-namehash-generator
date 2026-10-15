@@ -81,6 +81,10 @@ class NameHashGenerator:
         print(f"      Resolved {len(ue_resolved)} properties via UE4 Engine Reflection.")
 
         print("\n[5/6] Performing Multi-SDK Structural Diffing & Lineage Tracking...")
+        latest_obf = {p.hash_key for s in latest_structs.values() for p in s.props if p.hash_key}
+        for h in latest_obf:
+            self.previous_output_map.pop(h, None)
+
         known_combined = dict(self.base_map)
         known_combined.update(self.previous_output_map)
         known_combined.update(prev_resolved)

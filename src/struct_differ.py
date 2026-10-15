@@ -108,6 +108,34 @@ class StructDiffer:
             return m.group(1)
         return None
 
+    @staticmethod
+    def _is_type_compatible(
+        p_type: str,
+        l_type: str,
+        p_bitfield: bool,
+        l_bitfield: bool,
+        p_size: int,
+        l_size: int,
+    ) -> bool:
+        if p_bitfield or l_bitfield:
+            return p_bitfield and l_bitfield
+        if p_type == l_type:
+            return True
+        if ("*" in p_type and "*" in l_type) or ("TSubclassOf" in p_type and "TSubclassOf" in l_type):
+            return True
+        if "TArray" in p_type and "TArray" in l_type:
+            return True
+        if p_type in ("float", "double") and l_type in ("float", "double"):
+            return True
+        if "int" in p_type and "int" in l_type and p_size == l_size:
+            return True
+        if p_size > 0 and l_size > 0 and p_size == l_size:
+            p_obf = bool(re.search(r"[FUA]?_[0-9a-fA-F]{10}", p_type))
+            l_obf = bool(re.search(r"[FUA]?_[0-9a-fA-F]{10}", l_type))
+            if p_obf and l_obf:
+                return True
+        return False
+
     def _diff_struct_pair(self, prev_s: StructInfo, latest_s: StructInfo):
         p_props = prev_s.props
         l_props = latest_s.props
@@ -120,15 +148,21 @@ class StructDiffer:
 
         p_map = {(p.offset, p.mask): (p, name) for p, name in zip(p_props, p_names)}
 
+        existing_names = {p.name for p in l_props if not p.is_obfuscated}
+        used_names = set(existing_names)
+
         for l_prop in l_props:
             key = (l_prop.offset, l_prop.mask)
             if key in p_map:
                 p_prop, clean_name = p_map[key]
 
-                type_match = (
-                    p_prop.type == l_prop.type
-                    or p_prop.size == l_prop.size
-                    or (p_prop.is_bitfield and l_prop.is_bitfield)
+                type_match = self._is_type_compatible(
+                    p_prop.type,
+                    l_prop.type,
+                    p_prop.is_bitfield,
+                    l_prop.is_bitfield,
+                    p_prop.size,
+                    l_prop.size,
                 )
 
                 if type_match:
@@ -145,6 +179,9 @@ class StructDiffer:
                             and not clean_name.startswith("_")
                         ):
                             valid_name = clean_name.strip()
+                            if valid_name in used_names:
+                                continue
+                            used_names.add(valid_name)
                             self.resolved_mappings[latest_hash] = valid_name
                             self.transitions.append(
                                 VersionTransition(
@@ -161,6 +198,15 @@ class StructDiffer:
         for tag, i1, i2, j1, j2 in matcher.get_opcodes():
             if tag == "replace" and (i2 - i1) == (j2 - j1):
                 for p_p, l_p, clean_name in zip(p_props[i1:i2], l_props[j1:j2], p_names[i1:i2]):
+                    if not self._is_type_compatible(
+                        p_p.type,
+                        l_p.type,
+                        p_p.is_bitfield,
+                        l_p.is_bitfield,
+                        p_p.size,
+                        l_p.size,
+                    ):
+                        continue
                     if (
                         l_p.is_obfuscated
                         and clean_name
@@ -169,6 +215,9 @@ class StructDiffer:
                         and not clean_name.startswith("_")
                     ):
                         valid_name = clean_name.strip()
+                        if valid_name in used_names:
+                            continue
+                        used_names.add(valid_name)
                         self.resolved_mappings[l_p.hash_key] = valid_name
                         self.transitions.append(
                             VersionTransition(
@@ -200,6 +249,9 @@ def diff_usmap_to_sdk(
         u_names = [base_map.get(p.name, p.name) for p in u_props]
         h_names = [p.name for p in h_props]
 
+        existing_names = {p.name for p in h_props if not p.is_obfuscated}
+        used_names = set(existing_names)
+
         if len(u_props) == len(h_props):
             for u_p, h_p in zip(u_props, h_props):
                 if h_p.is_obfuscated:
@@ -210,7 +262,10 @@ def diff_usmap_to_sdk(
                         and not clean_name.startswith("*")
                         and not clean_name.startswith("_")
                     ):
-                        resolved[h_p.hash_key] = clean_name.strip()
+                        name = clean_name.strip()
+                        if name not in used_names:
+                            used_names.add(name)
+                            resolved[h_p.hash_key] = name
 
         matcher = difflib.SequenceMatcher(None, u_names, h_names)
         for tag, i1, i2, j1, j2 in matcher.get_opcodes():
@@ -224,6 +279,9 @@ def diff_usmap_to_sdk(
                             and not clean_name.startswith("*")
                             and not clean_name.startswith("_")
                         ):
-                            resolved[h_p.hash_key] = clean_name.strip()
+                            name = clean_name.strip()
+                            if name not in used_names:
+                                used_names.add(name)
+                                resolved[h_p.hash_key] = name
 
     return resolved
