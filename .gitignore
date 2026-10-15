@@ -21,3 +21,6 @@ input/*
 .venv/
 venv/
 ENV/
+
+# Temporary directories
+temp/
