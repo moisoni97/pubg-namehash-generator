@@ -1,278 +1,22 @@
 [
   {
-    "prev_hash": "*e44e09489a",
-    "latest_hash": "*ebbc052263",
-    "struct_name": "CameraShake",
-    "prop_offset": 52,
-    "prop_type": "float",
-    "name": "OscillationBlendOutTime"
+    "prev_hash": "*ee887e6399",
+    "latest_hash": "*ee887e6399",
+    "struct_name": "CustomizableMannequin",
+    "prop_offset": 1144,
+    "prop_type": "TSoftObjectPtr<USkeletalMesh>",
+    "name": "DefaultSkeletalMesh"
   },
   {
-    "prev_hash": "*a71ce74280",
-    "latest_hash": "*fdeda5b4a6",
-    "struct_name": "CameraShake",
-    "prop_offset": 40,
-    "prop_type": "bool",
-    "name": "OscillationBlendInTime"
-  },
-  {
-    "prev_hash": "*4d017b47cc",
-    "latest_hash": "*67269690e7",
-    "struct_name": "CameraShake",
-    "prop_offset": 48,
-    "prop_type": "float",
-    "name": "RotOscillation"
-  },
-  {
-    "prev_hash": "*da7d123728",
-    "latest_hash": "*cbf725a06d",
-    "struct_name": "CameraShake",
-    "prop_offset": 92,
-    "prop_type": "F_26e98ec05f",
-    "name": "LocOscillation"
-  },
-  {
-    "prev_hash": "*5a22cf5fbd",
-    "latest_hash": "*396674b3a4",
-    "struct_name": "CameraShake",
-    "prop_offset": 128,
-    "prop_type": "F_b9f6f18c48",
-    "name": "FOVOscillation"
-  },
-  {
-    "prev_hash": "*bd0bb82616",
-    "latest_hash": "*372bb108e8",
-    "struct_name": "LandscapeInfo",
-    "prop_offset": 92,
-    "prop_type": "int32_t",
-    "name": "ComponentSizeQuads"
-  },
-  {
-    "prev_hash": "*2b271adbe0",
-    "latest_hash": "*a1fb21e09b",
-    "struct_name": "LandscapeInfo",
-    "prop_offset": 88,
-    "prop_type": "int32_t",
-    "name": "SubsectionSizeQuads"
-  },
-  {
-    "prev_hash": "*0665b782d5",
-    "latest_hash": "*bf55da6d62",
-    "struct_name": "Timeline",
-    "prop_offset": 8,
-    "prop_type": "bool",
-    "name": "DitheredLODTransition"
-  },
-  {
-    "prev_hash": "*e7428f0e6f",
-    "latest_hash": "*593f555c5d",
-    "struct_name": "Timeline",
-    "prop_offset": 8,
-    "prop_type": "bool",
-    "name": "DitherOpacityMask"
-  },
-  {
-    "prev_hash": "*cbcb4ad5a4",
-    "latest_hash": "*0d61353370",
-    "struct_name": "TslCircleAreaEffectActor",
-    "prop_offset": 1208,
-    "prop_type": "TArray<ATslParticle*>",
-    "name": "MonsterTable"
-  },
-  {
-    "prev_hash": "*2280b8020e",
-    "latest_hash": "*adeba4c2a8",
-    "struct_name": "Item",
-    "prop_offset": 152,
-    "prop_type": "U_2d2120365c*",
-    "name": "ItemPackage"
-  },
-  {
-    "prev_hash": "*025002b990",
-    "latest_hash": "*732deb8be3",
-    "struct_name": "TslWheeledVehicle",
-    "prop_offset": 2944,
-    "prop_type": "U_fa01d36008*",
-    "name": "HornComponent"
-  },
-  {
-    "prev_hash": "*0390b14704",
-    "latest_hash": "*bd2bf7e8e7",
-    "struct_name": "Material",
-    "prop_offset": 2328,
-    "prop_type": "FGuid",
-    "name": "StateId"
-  },
-  {
-    "prev_hash": "*9993f0700b",
-    "latest_hash": "*7c9441a0b9",
-    "struct_name": "TslActorSpawnContainer",
-    "prop_offset": 1176,
-    "prop_type": "FName",
-    "name": "OnServerInteractionSucceed"
-  },
-  {
-    "prev_hash": "*3862b0e202",
-    "latest_hash": "*e44a0e6704",
-    "struct_name": "TslActorSpawnContainer",
-    "prop_offset": 1188,
-    "prop_type": "float",
-    "name": "HideNotificationMessage"
-  },
-  {
-    "prev_hash": "*68dc4ab358",
-    "latest_hash": "*6208f0a761",
-    "struct_name": "GameMode",
-    "prop_offset": 1200,
-    "prop_type": "TSubclassOf<U_00e6c45aed>",
-    "name": "PlayerStateClass"
-  },
-  {
-    "prev_hash": "*b49b8808d0",
-    "latest_hash": "*07c6c97657",
-    "struct_name": "GameMode",
-    "prop_offset": 1208,
-    "prop_type": "TArray<APlayerState*>",
-    "name": "GameStateClass"
-  },
-  {
-    "prev_hash": "*9a79cdecdd",
-    "latest_hash": "*e12abf55ab",
-    "struct_name": "BlendSample",
-    "prop_offset": 20,
-    "prop_type": "float",
-    "name": "RateScale"
-  },
-  {
-    "prev_hash": "*83131ed239",
-    "latest_hash": "*0791d21329",
-    "struct_name": "TslFBRWeapon_MeleeSkill",
-    "prop_offset": 3384,
-    "prop_type": "FName",
-    "name": "AttachSocket"
-  },
-  {
-    "prev_hash": "*d68d316335",
-    "latest_hash": "*972e255a73",
-    "struct_name": "AbilityTask_MoveToLocation",
-    "prop_offset": 192,
-    "prop_type": "U_5e2750edbb*",
-    "name": "MoveToLocation"
-  },
-  {
-    "prev_hash": "*1a939ed11c",
-    "latest_hash": "*0caa129dc9",
-    "struct_name": "TslFloatingVehicle",
-    "prop_offset": 1264,
-    "prop_type": "U_5401b5e1f9*",
-    "name": "HornComponent"
-  },
-  {
-    "prev_hash": "*0390b14704",
-    "latest_hash": "*bd2bf7e8e7",
-    "struct_name": "MaterialParameterCollection",
-    "prop_offset": 40,
-    "prop_type": "FGuid",
-    "name": "StateId"
-  },
-  {
-    "prev_hash": "*1d199dbbe2",
-    "latest_hash": "*23680ad5b7",
-    "struct_name": "TslResistanceBuff",
-    "prop_offset": 1240,
-    "prop_type": "float",
-    "name": "BuffValue"
-  },
-  {
-    "prev_hash": "*e189d8173d",
-    "latest_hash": "*5726d9c0bf",
-    "struct_name": "TslFloatingVehicleMovement",
-    "prop_offset": 660,
-    "prop_type": "float",
-    "name": "Frequency"
-  },
-  {
-    "prev_hash": "*91a344565d",
+    "prev_hash": "*ef665374c3",
     "latest_hash": "*ef665374c3",
-    "struct_name": "PaperSprite",
-    "prop_offset": 156,
+    "struct_name": "PaperTileMap",
+    "prop_offset": 56,
     "prop_type": "float",
     "name": "PixelsPerUnrealUnit"
   },
   {
-    "prev_hash": "*bd0bb82616",
-    "latest_hash": "*ddc39416c9",
-    "struct_name": "LandscapeProxy",
-    "prop_offset": 1032,
-    "prop_type": "int32_t",
-    "name": "ComponentSizeQuads"
-  },
-  {
-    "prev_hash": "*2b271adbe0",
-    "latest_hash": "*a1fb21e09b",
-    "struct_name": "LandscapeProxy",
-    "prop_offset": 1036,
-    "prop_type": "int32_t",
-    "name": "SubsectionSizeQuads"
-  },
-  {
-    "prev_hash": "*ea6f7a58ba",
-    "latest_hash": "*7e6968d579",
-    "struct_name": "LandscapeProxy",
-    "prop_offset": 1040,
-    "prop_type": "int32_t",
-    "name": "NumSubsections"
-  },
-  {
-    "prev_hash": "*cbe5855302",
-    "latest_hash": "*a82bb7cbed",
-    "struct_name": "LandscapeProxy",
-    "prop_offset": 1064,
-    "prop_type": "int32_t",
-    "name": "LandscapeSectionOffset"
-  },
-  {
-    "prev_hash": "*1f35dcf713",
-    "latest_hash": "*d7c4223cd0",
-    "struct_name": "TslVehicleConverter",
-    "prop_offset": 1080,
-    "prop_type": "U_fc803d897b*",
-    "name": "TslSkinItem"
-  },
-  {
-    "prev_hash": "*1d199dbbe2",
-    "latest_hash": "*23680ad5b7",
-    "struct_name": "TslSLBSpeedDebuff",
-    "prop_offset": 1256,
-    "prop_type": "float",
-    "name": "BuffValue"
-  },
-  {
-    "prev_hash": "*f22f146a31",
-    "latest_hash": "*88eae397bc",
-    "struct_name": "MovieSceneAudioSection",
-    "prop_offset": 344,
-    "prop_type": "FRichCurve",
-    "name": "PitchMultiplier"
-  },
-  {
-    "prev_hash": "*5ba0f2c5ee",
-    "latest_hash": "*9c5fb64c3a",
-    "struct_name": "ParticleModuleLocationDirect",
-    "prop_offset": 128,
-    "prop_type": "FRawDistributionVector",
-    "name": "LocationOffset"
-  },
-  {
-    "prev_hash": "*d6aee20066",
-    "latest_hash": "*95910edca5",
-    "struct_name": "ItemSpotGroupComponent",
-    "prop_offset": 1152,
-    "prop_type": "TArray<UItemSpotComponent*>",
-    "name": "SpotGroupType"
-  },
-  {
-    "prev_hash": "*82e88d79cd",
+    "prev_hash": "*44402a72ed",
     "latest_hash": "*44402a72ed",
     "struct_name": "MaterialExpression",
     "prop_offset": 76,
@@ -280,303 +24,15 @@
     "name": "AllowNegativeEmissiveColor"
   },
   {
-    "prev_hash": "*c469ee7814",
-    "latest_hash": "*0777a845d8",
-    "struct_name": "TslSLBRespawnInteractionActor",
-    "prop_offset": 1044,
-    "prop_type": "bool",
-    "name": "OnServerInteractionSucceed"
-  },
-  {
-    "prev_hash": "*daff7d8126",
-    "latest_hash": "*3e292bdc84",
-    "struct_name": "TslNpcCharacter",
-    "prop_offset": 3922,
-    "prop_type": "bool",
-    "name": "OnRep_IsDeadReplicated"
-  },
-  {
-    "prev_hash": "*3845ea526d",
-    "latest_hash": "*b2d6eafaae",
-    "struct_name": "TslWeaponSkinData",
-    "prop_offset": 344,
-    "prop_type": "UAnimMontage*",
-    "name": "WeaponInspectMontage"
-  },
-  {
-    "prev_hash": "*4dd7dc0674",
-    "latest_hash": "*ad33ced216",
-    "struct_name": "TslWeaponSkinData",
-    "prop_offset": 352,
-    "prop_type": "UBlendSpaceBase*",
-    "name": "InspectLocomotionBlendSpace"
-  },
-  {
-    "prev_hash": "*27f0ca83a8",
-    "latest_hash": "*fb502256d2",
-    "struct_name": "TslWeaponSkinData",
-    "prop_offset": 360,
-    "prop_type": "UBlendSpaceBase*",
-    "name": "FPPLocomotionBlendSpace"
-  },
-  {
-    "prev_hash": "*0390b14704",
-    "latest_hash": "*bd2bf7e8e7",
-    "struct_name": "MaterialFunction",
-    "prop_offset": 40,
-    "prop_type": "FGuid",
-    "name": "StateId"
-  },
-  {
-    "prev_hash": "*8148d9ac28",
-    "latest_hash": "*e52c727ffe",
-    "struct_name": "DataTable",
-    "prop_offset": 40,
-    "prop_type": "UScriptStruct*",
-    "name": "RowStruct"
-  },
-  {
-    "prev_hash": "*cbcb4ad5a4",
-    "latest_hash": "*0d61353370",
-    "struct_name": "TslSpiralDivingTrail",
-    "prop_offset": 1120,
-    "prop_type": "TArray<ATslParticle*>",
-    "name": "MonsterTable"
-  },
-  {
-    "prev_hash": "*8ecaa53d0c",
-    "latest_hash": "*99ee1152b1",
-    "struct_name": "PlatformMediaSource",
-    "prop_offset": 48,
-    "prop_type": "U_99ee1152b1*",
-    "name": "MediaSource"
-  },
-  {
-    "prev_hash": null,
-    "latest_hash": "*cab17a4cf3",
-    "struct_name": "TslAnimInstance",
-    "prop_offset": 2248,
-    "prop_type": "float",
-    "name": "UnarmedHitReactionBlendWeight_CP"
-  },
-  {
-    "prev_hash": null,
-    "latest_hash": "*cc3083be51",
-    "struct_name": "TslAnimInstance",
-    "prop_offset": 2288,
-    "prop_type": "UAnimMontage*",
-    "name": "GripBlendSpaceLH_CP"
-  },
-  {
-    "prev_hash": "*c1c8138bad",
-    "latest_hash": "*0b29e5002a",
-    "struct_name": "TslVehicleAIManager",
-    "prop_offset": 2120,
-    "prop_type": "U_89d28cc6e1*",
-    "name": "OnShowBlueZone"
-  },
-  {
-    "prev_hash": "*1961249532",
-    "latest_hash": "*6144f2c0c8",
-    "struct_name": "WeaponAttachmentDataAsset",
-    "prop_offset": 232,
-    "prop_type": "TSoftObjectPtr<UAkAudioEvent>",
-    "name": "Item"
-  },
-  {
-    "prev_hash": "*08aba3fa7a",
-    "latest_hash": "*031ccb5371",
-    "struct_name": "AudioComponent",
-    "prop_offset": 1168,
-    "prop_type": "USoundClass*",
-    "name": "SoundClassOverride"
-  },
-  {
-    "prev_hash": "*5850512b7f",
-    "latest_hash": "*5161b69f6a",
-    "struct_name": "AudioComponent",
-    "prop_offset": 1176,
-    "prop_type": "bool",
-    "name": "bAutoDestroy"
-  },
-  {
-    "prev_hash": "*eac3e8d8e5",
-    "latest_hash": "*356eb9e97a",
-    "struct_name": "AudioComponent",
-    "prop_offset": 1176,
-    "prop_type": "bool",
-    "name": "bAutoActivate"
-  },
-  {
-    "prev_hash": "*c1c8138bad",
-    "latest_hash": "*0b29e5002a",
-    "struct_name": "BluezoneEffectPrefab",
-    "prop_offset": 1112,
-    "prop_type": "U_89d28cc6e1*",
-    "name": "OnShowBlueZone"
-  },
-  {
-    "prev_hash": "*2290892d9e",
-    "latest_hash": "*b6b08d2aaf",
-    "struct_name": "TslGamepadInputComponent",
-    "prop_offset": 696,
-    "prop_type": "ATslPlayerController*",
-    "name": "OnCustomKeyBindingUpdated"
-  },
-  {
-    "prev_hash": "*dd27dbd2eb",
-    "latest_hash": "*24c3f94b24",
-    "struct_name": "TslRouletteActor",
-    "prop_offset": 1456,
-    "prop_type": "float",
-    "name": "RotationOffset"
-  },
-  {
-    "prev_hash": "*1f80e95824",
-    "latest_hash": "*7c74c9c6cf",
-    "struct_name": "Brush",
-    "prop_offset": 1008,
-    "prop_type": "E_341a67330c",
-    "name": "BrushType"
-  },
-  {
-    "prev_hash": "*47af71d3ed",
-    "latest_hash": "*f777e53711",
-    "struct_name": "TslDeathDropItemPackage",
-    "prop_offset": 1632,
-    "prop_type": "U_f777e53711*",
-    "name": "DeathDropBoxCarryDataAsset_Default"
-  },
-  {
-    "prev_hash": "*5850512b7f",
-    "latest_hash": "*5161b69f6a",
-    "struct_name": "ForceFeedbackComponent",
-    "prop_offset": 1152,
-    "prop_type": "bool",
-    "name": "bAutoDestroy"
-  },
-  {
-    "prev_hash": "*eac3e8d8e5",
-    "latest_hash": "*356eb9e97a",
-    "struct_name": "ForceFeedbackComponent",
-    "prop_offset": 1152,
-    "prop_type": "bool",
-    "name": "bAutoActivate"
-  },
-  {
-    "prev_hash": "*211e404699",
-    "latest_hash": "*b14e847e10",
-    "struct_name": "SoundCue",
-    "prop_offset": 176,
-    "prop_type": "float",
-    "name": "VolumeMultiplier"
-  },
-  {
-    "prev_hash": "*f22f146a31",
-    "latest_hash": "*88eae397bc",
-    "struct_name": "SoundCue",
-    "prop_offset": 180,
-    "prop_type": "float",
-    "name": "PitchMultiplier"
-  },
-  {
-    "prev_hash": "*636eb173fa",
-    "latest_hash": "*612ddc6b1e",
-    "struct_name": "AnimLinkableElement",
-    "prop_offset": 8,
-    "prop_type": "UAnimMontage*",
-    "name": "LinkedMontage"
-  },
-  {
-    "prev_hash": "*de38b8e7fe",
-    "latest_hash": "*96d3aeec6e",
-    "struct_name": "AnimLinkableElement",
-    "prop_offset": 20,
-    "prop_type": "int32_t",
-    "name": "SegmentIndex"
-  },
-  {
-    "prev_hash": "*0ac95324a0",
-    "latest_hash": "*b4f6a875d6",
-    "struct_name": "AnimLinkableElement",
-    "prop_offset": 24,
-    "prop_type": "EAnimLinkMethod",
-    "name": "LinkMethod"
-  },
-  {
-    "prev_hash": "*ec66156dd2",
-    "latest_hash": "*11316c36fd",
-    "struct_name": "AnimLinkableElement",
-    "prop_offset": 25,
-    "prop_type": "EAnimLinkMethod",
-    "name": "CachedLinkMethod"
-  },
-  {
-    "prev_hash": "*e727d2a55a",
-    "latest_hash": "*0f5eb4d40f",
-    "struct_name": "AnimLinkableElement",
-    "prop_offset": 28,
-    "prop_type": "float",
-    "name": "SegmentBeginTime"
-  },
-  {
-    "prev_hash": "*f2283c99c0",
-    "latest_hash": "*3fdb36c2a8",
-    "struct_name": "AnimLinkableElement",
-    "prop_offset": 32,
-    "prop_type": "float",
-    "name": "SegmentLength"
-  },
-  {
-    "prev_hash": "*f3d2513c01",
-    "latest_hash": "*aad8a6656d",
-    "struct_name": "AnimLinkableElement",
-    "prop_offset": 36,
-    "prop_type": "float",
-    "name": "LinkValue"
-  },
-  {
-    "prev_hash": "*62ff82cafe",
-    "latest_hash": "*150fa72ecf",
-    "struct_name": "AnimLinkableElement",
-    "prop_offset": 40,
-    "prop_type": "UAnimSequenceBase*",
-    "name": "LinkedSequence"
-  },
-  {
-    "prev_hash": "*66bc44e417",
-    "latest_hash": "*32aa21a760",
-    "struct_name": "CKOTask",
-    "prop_offset": 584,
-    "prop_type": "FName",
-    "name": "OnRep_TaskState"
-  },
-  {
-    "prev_hash": "*0665b782d5",
+    "prev_hash": "*bf55da6d62",
     "latest_hash": "*bf55da6d62",
-    "struct_name": "PaperFlipbookComponent",
-    "prop_offset": 2796,
+    "struct_name": "_10492bc33c",
+    "prop_offset": 928,
     "prop_type": "bool",
     "name": "DitheredLODTransition"
   },
   {
-    "prev_hash": "*e7428f0e6f",
-    "latest_hash": "*593f555c5d",
-    "struct_name": "PaperFlipbookComponent",
-    "prop_offset": 2796,
-    "prop_type": "bool",
-    "name": "DitherOpacityMask"
-  },
-  {
-    "prev_hash": "*1d199dbbe2",
-    "latest_hash": "*23680ad5b7",
-    "struct_name": "TslFBRBuff",
-    "prop_offset": 1256,
-    "prop_type": "float",
-    "name": "BuffValue"
-  },
-  {
-    "prev_hash": "*56b8f4a762",
+    "prev_hash": "*be4aee6da8",
     "latest_hash": "*be4aee6da8",
     "struct_name": "BranchingPoint",
     "prop_offset": 60,
@@ -584,103 +40,183 @@
     "name": "TriggerTimeOffset"
   },
   {
-    "prev_hash": "*b6155e98a6",
-    "latest_hash": "*e26d57242f",
-    "struct_name": "SimpleConstructionScript",
-    "prop_offset": 72,
-    "prop_type": "USCS_Node*",
-    "name": "RootNodes"
-  },
-  {
-    "prev_hash": "*38c50e1c12",
-    "latest_hash": "*16d4e16c59",
-    "struct_name": "HapticFeedbackDetails_Curve",
-    "prop_offset": 120,
-    "prop_type": "FRuntimeFloatCurve",
-    "name": "Amplitude"
-  },
-  {
-    "prev_hash": "*56b8f4a762",
-    "latest_hash": "*be4aee6da8",
-    "struct_name": "AnimNotifyEvent",
-    "prop_offset": 52,
-    "prop_type": "float",
-    "name": "TriggerTimeOffset"
-  },
-  {
-    "prev_hash": "*75f638b2d0",
-    "latest_hash": "*3b638a65b6",
-    "struct_name": "AnimNotifyEvent",
-    "prop_offset": 56,
-    "prop_type": "float",
-    "name": "EndTriggerTimeOffset"
-  },
-  {
-    "prev_hash": "*7ccec47541",
-    "latest_hash": "*ee887e6399",
-    "struct_name": "CustomizableMannequin",
-    "prop_offset": 1112,
-    "prop_type": "TSoftObjectPtr<USkeletalMesh>",
-    "name": "DefaultSkeletalMesh"
-  },
-  {
-    "prev_hash": "*e253090e67",
-    "latest_hash": "*9a164515da",
-    "struct_name": "TutorialHittingTarget",
-    "prop_offset": 1128,
-    "prop_type": "F_6b84f6be44",
-    "name": "OnRep_LastTakeHitInfo"
-  },
-  {
-    "prev_hash": "*7b75263956",
-    "latest_hash": "*cdc9a7ee32",
-    "struct_name": "TslSLBLinkSplineEffect",
-    "prop_offset": 1160,
-    "prop_type": "FName",
-    "name": "TurnOnLinkParticle"
-  },
-  {
-    "prev_hash": "*0665b782d5",
-    "latest_hash": "*bf55da6d62",
-    "struct_name": "MatineeActor",
-    "prop_offset": 1104,
-    "prop_type": "bool",
-    "name": "DitheredLODTransition"
-  },
-  {
-    "prev_hash": "*9a79cdecdd",
-    "latest_hash": "*e12abf55ab",
-    "struct_name": "ParticleModuleSpawn",
-    "prop_offset": 112,
-    "prop_type": "F_f1f6ef22a8",
-    "name": "RateScale"
-  },
-  {
-    "prev_hash": "*b78fa32e42",
-    "latest_hash": "*3dafb2f91d",
-    "struct_name": "TslAirborneMatchPreparerModeFeature",
-    "prop_offset": 284,
-    "prop_type": "bool",
-    "name": "AllowDealDamage"
-  },
-  {
-    "prev_hash": "*9d76ee1bed",
-    "latest_hash": "*ae35bd685b",
-    "struct_name": "CustomizableObjectIdentifier",
-    "prop_offset": 16,
-    "prop_type": "FString",
-    "name": "ParamName"
-  },
-  {
-    "prev_hash": "*74e7775338",
+    "prev_hash": "*a762f8199f",
     "latest_hash": "*a762f8199f",
     "struct_name": "TslMissile",
-    "prop_offset": 1288,
+    "prop_offset": 1320,
     "prop_type": "UParticleSystemComponent*",
     "name": "OnRep_MissileData"
   },
   {
-    "prev_hash": "*9a79cdecdd",
+    "prev_hash": "*ddc39416c9",
+    "latest_hash": "*ddc39416c9",
+    "struct_name": "LandscapeInfo",
+    "prop_offset": 84,
+    "prop_type": "int32_t",
+    "name": "ComponentSizeQuads"
+  },
+  {
+    "prev_hash": "*a1fb21e09b",
+    "latest_hash": "*a1fb21e09b",
+    "struct_name": "LandscapeInfo",
+    "prop_offset": 88,
+    "prop_type": "int32_t",
+    "name": "SubsectionSizeQuads"
+  },
+  {
+    "prev_hash": "*ddc39416c9",
+    "latest_hash": "*ddc39416c9",
+    "struct_name": "LandscapeComponent",
+    "prop_offset": 2504,
+    "prop_type": "int32_t",
+    "name": "ComponentSizeQuads"
+  },
+  {
+    "prev_hash": "*a1fb21e09b",
+    "latest_hash": "*a1fb21e09b",
+    "struct_name": "LandscapeComponent",
+    "prop_offset": 2508,
+    "prop_type": "int32_t",
+    "name": "SubsectionSizeQuads"
+  },
+  {
+    "prev_hash": "*7e6968d579",
+    "latest_hash": "*7e6968d579",
+    "struct_name": "LandscapeComponent",
+    "prop_offset": 2512,
+    "prop_type": "int32_t",
+    "name": "NumSubsections"
+  },
+  {
+    "prev_hash": "*871a9ce711",
+    "latest_hash": "*871a9ce711",
+    "struct_name": "LandscapeComponent",
+    "prop_offset": 2624,
+    "prop_type": "float",
+    "name": "WeightmapSubsectionOffset"
+  },
+  {
+    "prev_hash": "*031ccb5371",
+    "latest_hash": "*031ccb5371",
+    "struct_name": "_ada51a1578",
+    "prop_offset": 56,
+    "prop_type": "USoundClass*",
+    "name": "SoundClassOverride"
+  },
+  {
+    "prev_hash": "*a82bb7cbed",
+    "latest_hash": "*ddc39416c9",
+    "struct_name": "LandscapeProxy",
+    "prop_offset": 1064,
+    "prop_type": "int32_t",
+    "name": "LandscapeSectionOffset"
+  },
+  {
+    "prev_hash": "*ddc39416c9",
+    "latest_hash": "*ddc39416c9",
+    "struct_name": "LandscapeProxy",
+    "prop_offset": 1064,
+    "prop_type": "int32_t",
+    "name": "ComponentSizeQuads"
+  },
+  {
+    "prev_hash": "*a1fb21e09b",
+    "latest_hash": "*a1fb21e09b",
+    "struct_name": "LandscapeProxy",
+    "prop_offset": 1068,
+    "prop_type": "int32_t",
+    "name": "SubsectionSizeQuads"
+  },
+  {
+    "prev_hash": "*7e6968d579",
+    "latest_hash": "*7e6968d579",
+    "struct_name": "LandscapeProxy",
+    "prop_offset": 1072,
+    "prop_type": "int32_t",
+    "name": "NumSubsections"
+  },
+  {
+    "prev_hash": "*0b29e5002a",
+    "latest_hash": "*0b29e5002a",
+    "struct_name": "BluezoneEffectPrefab",
+    "prop_offset": 1144,
+    "prop_type": "U_89d28cc6e1*",
+    "name": "OnShowBlueZone"
+  },
+  {
+    "prev_hash": "*e52c727ffe",
+    "latest_hash": "*e52c727ffe",
+    "struct_name": "DataTable",
+    "prop_offset": 40,
+    "prop_type": "UScriptStruct*",
+    "name": "RowStruct"
+  },
+  {
+    "prev_hash": "*b6b08d2aaf",
+    "latest_hash": "*b6b08d2aaf",
+    "struct_name": "TslGamepadInputComponent",
+    "prop_offset": 696,
+    "prop_type": "ATslPlayerController*",
+    "name": "OnCustomKeyBindingUpdated"
+  },
+  {
+    "prev_hash": "*c8865c5fee",
+    "latest_hash": "*c8865c5fee",
+    "struct_name": "TslSLBLinkSplineEffect",
+    "prop_offset": 1200,
+    "prop_type": "FName",
+    "name": "TurnOnLinkParticle"
+  },
+  {
+    "prev_hash": "*bf55da6d62",
+    "latest_hash": "*bf55da6d62",
+    "struct_name": "Timeline",
+    "prop_offset": 8,
+    "prop_type": "bool",
+    "name": "DitheredLODTransition"
+  },
+  {
+    "prev_hash": "*593f555c5d",
+    "latest_hash": "*593f555c5d",
+    "struct_name": "Timeline",
+    "prop_offset": 8,
+    "prop_type": "bool",
+    "name": "DitherOpacityMask"
+  },
+  {
+    "prev_hash": "*95910edca5",
+    "latest_hash": "*95910edca5",
+    "struct_name": "ItemSpotGroupComponent",
+    "prop_offset": 1136,
+    "prop_type": "TArray<UItemSpotComponent*>",
+    "name": "SpotGroupType"
+  },
+  {
+    "prev_hash": "*2ec03b8b7d",
+    "latest_hash": "*ad08e521fd",
+    "struct_name": "BlueprintGeneratedClass",
+    "prop_offset": 768,
+    "prop_type": "UStructProperty*",
+    "name": "UberGraphFunction"
+  },
+  {
+    "prev_hash": "*5161b69f6a",
+    "latest_hash": "*5161b69f6a",
+    "struct_name": "ForceFeedbackComponent",
+    "prop_offset": 1136,
+    "prop_type": "bool",
+    "name": "bAutoDestroy"
+  },
+  {
+    "prev_hash": "*356eb9e97a",
+    "latest_hash": "*356eb9e97a",
+    "struct_name": "ForceFeedbackComponent",
+    "prop_offset": 1136,
+    "prop_type": "bool",
+    "name": "bAutoActivate"
+  },
+  {
+    "prev_hash": "*e12abf55ab",
     "latest_hash": "*e12abf55ab",
     "struct_name": "AnimSequenceBase",
     "prop_offset": 140,
@@ -688,15 +224,79 @@
     "name": "RateScale"
   },
   {
-    "prev_hash": "*27c9ffa0a0",
-    "latest_hash": "*ad08e521fd",
-    "struct_name": "BlueprintGeneratedClass",
-    "prop_offset": 760,
-    "prop_type": "UStructProperty*",
-    "name": "UberGraphFunction"
+    "prev_hash": "*88eae397bc",
+    "latest_hash": "*88eae397bc",
+    "struct_name": "MovieSceneAudioSection",
+    "prop_offset": 344,
+    "prop_type": "FRichCurve",
+    "name": "PitchMultiplier"
   },
   {
-    "prev_hash": "*ff32be1416",
+    "prev_hash": "*e12abf55ab",
+    "latest_hash": "*e12abf55ab",
+    "struct_name": "ParticleModuleSpawn",
+    "prop_offset": 112,
+    "prop_type": "F_f1f6ef22a8",
+    "name": "RateScale"
+  },
+  {
+    "prev_hash": "*3dafb2f91d",
+    "latest_hash": "*3dafb2f91d",
+    "struct_name": "TslAirborneMatchPreparerModeFeature",
+    "prop_offset": 284,
+    "prop_type": "bool",
+    "name": "AllowDealDamage"
+  },
+  {
+    "prev_hash": "*593f555c5d",
+    "latest_hash": "*593f555c5d",
+    "struct_name": "_a4779ca803",
+    "prop_offset": 224,
+    "prop_type": "bool",
+    "name": "DitherOpacityMask"
+  },
+  {
+    "prev_hash": "*99ee1152b1",
+    "latest_hash": "*99ee1152b1",
+    "struct_name": "PlatformMediaSource",
+    "prop_offset": 48,
+    "prop_type": "U_99ee1152b1*",
+    "name": "MediaSource"
+  },
+  {
+    "prev_hash": "*379a921386",
+    "latest_hash": "*379a921386",
+    "struct_name": "TslPowerupItem",
+    "prop_offset": 1104,
+    "prop_type": "UMeshComponent*",
+    "name": "BodySetup"
+  },
+  {
+    "prev_hash": "*be4aee6da8",
+    "latest_hash": "*be4aee6da8",
+    "struct_name": "AnimNotifyEvent",
+    "prop_offset": 52,
+    "prop_type": "float",
+    "name": "TriggerTimeOffset"
+  },
+  {
+    "prev_hash": "*3b638a65b6",
+    "latest_hash": "*3b638a65b6",
+    "struct_name": "AnimNotifyEvent",
+    "prop_offset": 56,
+    "prop_type": "float",
+    "name": "EndTriggerTimeOffset"
+  },
+  {
+    "prev_hash": "*32aa21a760",
+    "latest_hash": "*32aa21a760",
+    "struct_name": "CKOTask",
+    "prop_offset": 584,
+    "prop_type": "FName",
+    "name": "OnRep_TaskState"
+  },
+  {
+    "prev_hash": "*e5a6ef9227",
     "latest_hash": "*e5a6ef9227",
     "struct_name": "TslVehicleSinkComponent",
     "prop_offset": 640,
@@ -704,99 +304,259 @@
     "name": "UpdatedComponent"
   },
   {
-    "prev_hash": "*b29b2d1712",
-    "latest_hash": "*379a921386",
-    "struct_name": "TslPowerupItem",
-    "prop_offset": 1072,
-    "prop_type": "UMeshComponent*",
-    "name": "BodySetup"
+    "prev_hash": "*0b29e5002a",
+    "latest_hash": "*0b29e5002a",
+    "struct_name": "TslVehicleAIManager",
+    "prop_offset": 2152,
+    "prop_type": "U_89d28cc6e1*",
+    "name": "OnShowBlueZone"
   },
   {
-    "prev_hash": "*cfd747845d",
+    "prev_hash": "*6208f0a761",
+    "latest_hash": "*6208f0a761",
+    "struct_name": "GameMode",
+    "prop_offset": 1232,
+    "prop_type": "TSubclassOf<U_00e6c45aed>",
+    "name": "PlayerStateClass"
+  },
+  {
+    "prev_hash": "*07c6c97657",
+    "latest_hash": "*07c6c97657",
+    "struct_name": "GameMode",
+    "prop_offset": 1240,
+    "prop_type": "TArray<APlayerState*>",
+    "name": "GameStateClass"
+  },
+  {
+    "prev_hash": "*b14e847e10",
+    "latest_hash": "*b14e847e10",
+    "struct_name": "SoundCue",
+    "prop_offset": 176,
+    "prop_type": "float",
+    "name": "VolumeMultiplier"
+  },
+  {
+    "prev_hash": "*88eae397bc",
+    "latest_hash": "*88eae397bc",
+    "struct_name": "SoundCue",
+    "prop_offset": 180,
+    "prop_type": "float",
+    "name": "PitchMultiplier"
+  },
+  {
+    "prev_hash": "*031ccb5371",
+    "latest_hash": "*031ccb5371",
+    "struct_name": "AudioComponent",
+    "prop_offset": 1152,
+    "prop_type": "USoundClass*",
+    "name": "SoundClassOverride"
+  },
+  {
+    "prev_hash": "*5161b69f6a",
+    "latest_hash": "*5161b69f6a",
+    "struct_name": "AudioComponent",
+    "prop_offset": 1160,
+    "prop_type": "bool",
+    "name": "bAutoDestroy"
+  },
+  {
+    "prev_hash": "*356eb9e97a",
+    "latest_hash": "*356eb9e97a",
+    "struct_name": "AudioComponent",
+    "prop_offset": 1160,
+    "prop_type": "bool",
+    "name": "bAutoActivate"
+  },
+  {
+    "prev_hash": "*7c9441a0b9",
+    "latest_hash": "*7c9441a0b9",
+    "struct_name": "TslActorSpawnContainer",
+    "prop_offset": 1208,
+    "prop_type": "FName",
+    "name": "OnServerInteractionSucceed"
+  },
+  {
+    "prev_hash": "*e44a0e6704",
+    "latest_hash": "*e44a0e6704",
+    "struct_name": "TslActorSpawnContainer",
+    "prop_offset": 1220,
+    "prop_type": "float",
+    "name": "HideNotificationMessage"
+  },
+  {
+    "prev_hash": "*972e255a73",
+    "latest_hash": "*972e255a73",
+    "struct_name": "AbilityTask_MoveToLocation",
+    "prop_offset": 192,
+    "prop_type": "U_5e2750edbb*",
+    "name": "MoveToLocation"
+  },
+  {
+    "prev_hash": "*0777a845d8",
+    "latest_hash": "*0777a845d8",
+    "struct_name": "TslSLBRespawnInteractionActor",
+    "prop_offset": 1076,
+    "prop_type": "bool",
+    "name": "OnServerInteractionSucceed"
+  },
+  {
+    "prev_hash": "*da9258758e",
     "latest_hash": "*da9258758e",
     "struct_name": "TslLightCollectActor",
-    "prop_offset": 1040,
+    "prop_offset": 1072,
     "prop_type": "float",
     "name": "OnRep_CurrentIntensity"
   },
   {
-    "prev_hash": "*0390b14704",
-    "latest_hash": "*7510979dfc",
-    "struct_name": "LandscapeComponent",
-    "prop_offset": 2796,
-    "prop_type": "FGuid",
-    "name": "StateId"
-  },
-  {
-    "prev_hash": "*bd0bb82616",
-    "latest_hash": "*ddc39416c9",
-    "struct_name": "LandscapeComponent",
-    "prop_offset": 2520,
-    "prop_type": "int32_t",
-    "name": "ComponentSizeQuads"
-  },
-  {
-    "prev_hash": "*2b271adbe0",
-    "latest_hash": "*a1fb21e09b",
-    "struct_name": "LandscapeComponent",
-    "prop_offset": 2524,
-    "prop_type": "int32_t",
-    "name": "SubsectionSizeQuads"
-  },
-  {
-    "prev_hash": "*ea6f7a58ba",
-    "latest_hash": "*7e6968d579",
-    "struct_name": "LandscapeComponent",
-    "prop_offset": 2528,
-    "prop_type": "int32_t",
-    "name": "NumSubsections"
-  },
-  {
-    "prev_hash": "*2047ab5272",
-    "latest_hash": "*871a9ce711",
-    "struct_name": "LandscapeComponent",
-    "prop_offset": 2640,
+    "prev_hash": "*e12abf55ab",
+    "latest_hash": "*e12abf55ab",
+    "struct_name": "BlendSample",
+    "prop_offset": 20,
     "prop_type": "float",
-    "name": "WeightmapSubsectionOffset"
+    "name": "RateScale"
   },
   {
-    "prev_hash": "*94e5026258",
+    "prev_hash": "*96d3aeec6e",
+    "latest_hash": "*96d3aeec6e",
+    "struct_name": "_07d62aeb25",
+    "prop_offset": 8,
+    "prop_type": "int32_t",
+    "name": "SegmentIndex"
+  },
+  {
+    "prev_hash": "*c42522fd79",
     "latest_hash": "*c42522fd79",
     "struct_name": "WorldSettings",
-    "prop_offset": 1496,
+    "prop_offset": 1528,
     "prop_type": "APlayerState*",
     "name": "OnRep_WorldGravityZ"
   },
   {
-    "prev_hash": "*91a344565d",
-    "latest_hash": "*68d297793a",
-    "struct_name": "PaperTileMap",
-    "prop_offset": 64,
+    "prev_hash": "*7c64239886",
+    "latest_hash": "*7c64239886",
+    "struct_name": "TslHittableActorSpawnContainer",
+    "prop_offset": 1448,
+    "prop_type": "bool",
+    "name": "OnRep_bMaterialEffectEnabled"
+  },
+  {
+    "prev_hash": "*612ddc6b1e",
+    "latest_hash": "*612ddc6b1e",
+    "struct_name": "AnimLinkableElement",
+    "prop_offset": 8,
+    "prop_type": "UAnimMontage*",
+    "name": "LinkedMontage"
+  },
+  {
+    "prev_hash": "*96d3aeec6e",
+    "latest_hash": "*96d3aeec6e",
+    "struct_name": "AnimLinkableElement",
+    "prop_offset": 20,
+    "prop_type": "int32_t",
+    "name": "SegmentIndex"
+  },
+  {
+    "prev_hash": "*b4f6a875d6",
+    "latest_hash": "*b4f6a875d6",
+    "struct_name": "AnimLinkableElement",
+    "prop_offset": 24,
+    "prop_type": "EAnimLinkMethod",
+    "name": "LinkMethod"
+  },
+  {
+    "prev_hash": "*11316c36fd",
+    "latest_hash": "*11316c36fd",
+    "struct_name": "AnimLinkableElement",
+    "prop_offset": 25,
+    "prop_type": "EAnimLinkMethod",
+    "name": "CachedLinkMethod"
+  },
+  {
+    "prev_hash": "*0f5eb4d40f",
+    "latest_hash": "*0f5eb4d40f",
+    "struct_name": "AnimLinkableElement",
+    "prop_offset": 28,
+    "prop_type": "float",
+    "name": "SegmentBeginTime"
+  },
+  {
+    "prev_hash": "*3fdb36c2a8",
+    "latest_hash": "*3fdb36c2a8",
+    "struct_name": "AnimLinkableElement",
+    "prop_offset": 32,
+    "prop_type": "float",
+    "name": "SegmentLength"
+  },
+  {
+    "prev_hash": "*aad8a6656d",
+    "latest_hash": "*aad8a6656d",
+    "struct_name": "AnimLinkableElement",
+    "prop_offset": 36,
+    "prop_type": "float",
+    "name": "LinkValue"
+  },
+  {
+    "prev_hash": "*150fa72ecf",
+    "latest_hash": "*150fa72ecf",
+    "struct_name": "AnimLinkableElement",
+    "prop_offset": 40,
+    "prop_type": "UAnimSequenceBase*",
+    "name": "LinkedSequence"
+  },
+  {
+    "prev_hash": "*ef665374c3",
+    "latest_hash": "*ef665374c3",
+    "struct_name": "PaperSprite",
+    "prop_offset": 156,
     "prop_type": "float",
     "name": "PixelsPerUnrealUnit"
   },
   {
+    "prev_hash": "*f777e53711",
+    "latest_hash": "*f777e53711",
+    "struct_name": "TslDeathDropItemPackage",
+    "prop_offset": 1664,
+    "prop_type": "U_f777e53711*",
+    "name": "DeathDropBoxCarryDataAsset_Default"
+  },
+  {
+    "prev_hash": "*bf55da6d62",
+    "latest_hash": "*bf55da6d62",
+    "struct_name": "MatineeActor",
+    "prop_offset": 1136,
+    "prop_type": "bool",
+    "name": "DitheredLODTransition"
+  },
+  {
     "prev_hash": null,
-    "latest_hash": "*49f7fae887",
-    "struct_name": "_08e8c01bc1",
-    "prop_offset": 560,
-    "prop_type": "float",
-    "name": "ActorSpawnGlobalCooldown"
-  },
-  {
-    "prev_hash": "*459c294040",
-    "latest_hash": "*2053ae97a4",
-    "struct_name": "_f2f7d55992",
+    "latest_hash": "*9a7f515385",
+    "struct_name": "_97ff37e2fa",
     "prop_offset": 0,
-    "prop_type": "float",
-    "name": "Amplitude"
+    "prop_type": "int32_t",
+    "name": "NetGUID"
   },
   {
-    "prev_hash": "*e1d89179a7",
-    "latest_hash": "*f2831dc356",
-    "struct_name": "_f2f7d55992",
+    "prev_hash": null,
+    "latest_hash": "*7d93a1a078",
+    "struct_name": "_97ff37e2fa",
     "prop_offset": 4,
     "prop_type": "float",
-    "name": "Frequency"
+    "name": "SpawnTimeSeconds"
+  },
+  {
+    "prev_hash": null,
+    "latest_hash": "*468a1bb8db",
+    "struct_name": "_1f0166fde2",
+    "prop_offset": 1456,
+    "prop_type": "TMap<FString, F_8305761d44>",
+    "name": "SurfaceAudioMap"
+  },
+  {
+    "prev_hash": null,
+    "latest_hash": "*f628fc748d",
+    "struct_name": "_1f0166fde2",
+    "prop_offset": 1536,
+    "prop_type": "bool",
+    "name": "bUseNewSurfaceAudio"
   }
 ]
