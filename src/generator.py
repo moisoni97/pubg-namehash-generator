@@ -24,8 +24,13 @@ class NameHashGenerator:
         elif config.get("base_hashmap_path"):
             self.base_hashmap_paths = [config.get("base_hashmap_path")]
         else:
-            self.base_hashmap_paths = ["data/base_hashmap_2606.json", "data/base_hashmap_2607.json"]
+            self.base_hashmap_paths = [
+                "data/base_hashmap_2606.json",
+                "data/base_hashmap_2607.json",
+                "data/base_hashmap_assets.json",
+            ]
 
+        self.asset_baseline_path = config.get("asset_baseline_path", "data/base_hashmap_assets.json")
         self.ue4_reference_path = config.get("ue4_reference_path", "")
         self.custom_overrides_path = config.get("custom_overrides_path", "")
         self.usmap_path = config.get("usmap_path", "")
@@ -116,6 +121,9 @@ class NameHashGenerator:
             self.latest_mappings.update(input_resolved)
             self.all_mappings.update(input_resolved)
 
+            if input_resolved:
+                self._archive_asset_mappings(input_resolved)
+
         self._build_lineage(differ)
         self._export_outputs(t0)
 
@@ -167,6 +175,42 @@ class NameHashGenerator:
         for trans in differ.transitions:
             if trans.name and trans.name.strip():
                 self.lineage_records.append(trans.to_dict())
+        self.lineage_records.sort(
+            key=lambda x: (
+                x.get("struct_name") or "",
+                x.get("prop_offset") or 0,
+                x.get("name") or "",
+                x.get("latest_hash") or "",
+            )
+        )
+
+    def _archive_asset_mappings(self, input_resolved: Dict[str, str]):
+        if not self.asset_baseline_path:
+            return
+        archive_path = self.asset_baseline_path
+        existing_assets = {}
+        if os.path.isfile(archive_path):
+            try:
+                with open(archive_path, "r", encoding="utf-8") as f:
+                    existing_assets = json.load(f)
+            except Exception as e:
+                print(f"      Warning: Could not read {archive_path} for archiving: {e}")
+
+        new_count = 0
+        for h, name in input_resolved.items():
+            if h not in existing_assets or existing_assets[h] != name:
+                existing_assets[h] = name
+                new_count += 1
+
+        if new_count > 0:
+            try:
+                os.makedirs(os.path.dirname(archive_path) or ".", exist_ok=True)
+                sorted_assets = dict(sorted(existing_assets.items()))
+                with open(archive_path, "w", encoding="utf-8") as f:
+                    json.dump(sorted_assets, f, indent=4)
+                print(f"      [+] Archived {new_count} new asset mapping(s) into {archive_path}.")
+            except Exception as e:
+                print(f"      Warning: Could not save archived assets to {archive_path}: {e}")
 
     def _export_outputs(self, start_time: float):
         sorted_latest = {
