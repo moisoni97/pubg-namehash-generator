@@ -3,7 +3,8 @@
   "previous_sdk_path": "PUBG SDK/PUBG SDK 2609.1.1.83",
   "base_hashmap_paths": [
     "data/base_hashmap_2606.json",
-    "data/base_hashmap_2607.json"
+    "data/base_hashmap_2607.json",
+    "data/base_hashmap_assets.json"
   ],
   "ue4_reference_path": "data/ue4_reference.json",
   "custom_overrides_path": "data/custom_overrides.json",
