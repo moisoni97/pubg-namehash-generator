@@ -100,9 +100,11 @@ class HeaderParser:
             raise FileNotFoundError(f"SDK dump directory not found: {self.sdk_dump_path}")
 
         target_dir = self.sdk_dump_path
-        dump_subdir = os.path.join(self.sdk_dump_path, "DUMP")
-        if os.path.exists(dump_subdir):
-            target_dir = dump_subdir
+        for candidate in ("DUMP", "Files", "SDK", "Headers", "dump", "files", "sdk", "headers"):
+            candidate_dir = os.path.join(self.sdk_dump_path, candidate)
+            if os.path.isdir(candidate_dir):
+                target_dir = candidate_dir
+                break
 
         for root, _, files in os.walk(target_dir):
             for file in files:
