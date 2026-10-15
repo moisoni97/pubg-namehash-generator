@@ -11,7 +11,7 @@ PUBG periodically applies name obfuscation across reflection properties in engin
 - **Standard UE4 Engine Resolver**: Automatically resolves obfuscated properties in Unreal Engine classes (`UDataTable`, `AActor`, `UPrimitiveComponent`, etc.).
 - **Multi-SDK Structural Diffing**: Tracks property offsets, sizes, types, and bitfields across consecutive game patches.
 - **Obfuscated Hierarchy Pairing**: Links obfuscated super-structs (e.g. `F_bd1601cf88` <-> `F_8dac437b7a`) to resolve internal member properties.
-- **Input Asset Ingestion**: Automatically scans exported JSON asset files (e.g. WeaponGunData, SkinItemTable, Blueprints, etc.) dropped into `input/` and resolves all their hashes.
+- **Input Asset Ingestion & Auto-Archiving**: Automatically scans exported JSON asset files (e.g. WeaponGunData, SkinItemTable, Blueprints, etc.) dropped into `input/`, resolves their hashes, and automatically archives them into `data/base_hashmap_assets.json`.
 - **Multi-Version Chain Lineage**: Traces properties across versions (`2606` -> `2607` -> `2608` -> future) to retain community-verified names.
 - **Dual Outputs**:
   - `PUBGNameHashMap.json`: Comprehensive multi-version database ready to drop directly into CUE4Parse.
@@ -42,7 +42,7 @@ Generated files will be saved to the `output/` directory:
 
 ## When PUBG Updates
 
-1. Dump the new SDK and place the folder in `PUBG SDK/` (e.g. `PUBG SDK 2608.1.1.67`).
+1. Dump the new SDK and place the folder in `PUBG SDK/` (supports modern structures with `Files/`, `DUMP/`, `SDK/`, or root `.hpp` dumps).
 2. Open `config.json` and update paths:
    ```json
    {
@@ -50,7 +50,8 @@ Generated files will be saved to the `output/` directory:
      "previous_sdk_path": "PUBG SDK/PUBG SDK LAST.y.y.y",
      "base_hashmap_paths": [
        "data/base_hashmap_2606.json",
-       "data/base_hashmap_2607.json"
+       "data/base_hashmap_2607.json",
+       "data/base_hashmap_assets.json"
      ],
      "ue4_reference_path": "data/ue4_reference.json",
      "custom_overrides_path": "data/custom_overrides.json",
@@ -73,11 +74,12 @@ PUBG NameHash Generator/
 ├── requirements.txt            # Dependencies
 ├── README.md                   # Documentation
 ├── data/
-│   ├── base_hashmap_2606.json  # v42.1 (2606) baseline map
-│   ├── base_hashmap_2607.json  # v42.2 (2607) reference map
-│   ├── ue4_reference.json      # Standard UE4 reflection properties database
-│   ├── custom_overrides.json   # Verified game-specific property overrides
-│   └── usmap/                  # Reference USMAP binary dumps
+│   ├── base_hashmap_2606.json   # v42.1 (2606) baseline map
+│   ├── base_hashmap_2607.json   # v42.2 (2607) reference map
+│   ├── base_hashmap_assets.json # Auto-archived asset hash database
+│   ├── ue4_reference.json       # Standard UE4 reflection properties database
+│   ├── custom_overrides.json    # Verified game-specific property overrides
+│   └── usmap/                   # Reference USMAP binary dumps
 ├── src/
 │   ├── __init__.py
 │   ├── header_parser.py        # Fast C++ SDK header parser
