@@ -94,10 +94,6 @@ class UEResolver:
     }
 
     STRUCT_SIGNATURES = {
-        "FOscillator": [
-            ("float", "Amplitude", 0x0000),
-            ("float", "Frequency", 0x0004),
-        ],
         "RotatorOscillation": [
             ("FOscillator", "Pitch", 0x0000),
             ("FOscillator", "Yaw", 0x000C),
