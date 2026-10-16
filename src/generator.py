@@ -86,8 +86,15 @@ class NameHashGenerator:
         print(f"      Resolved {len(ue_resolved)} properties via UE4 Engine Reflection.")
 
         print("\n[5/6] Performing Multi-SDK Structural Diffing & Lineage Tracking...")
-        latest_obf = {p.hash_key for s in latest_structs.values() for p in s.props if p.hash_key}
-        for h in latest_obf:
+        prev_obf = (
+            {p.hash_key for s in prev_structs.values() for p in s.props if p.hash_key}
+            | {s.hash_key for s in prev_structs.values() if s.hash_key}
+        )
+        latest_obf = (
+            {p.hash_key for s in latest_structs.values() for p in s.props if p.hash_key}
+            | {s.hash_key for s in latest_structs.values() if s.hash_key}
+        )
+        for h in (latest_obf - prev_obf):
             self.previous_output_map.pop(h, None)
 
         known_combined = dict(self.base_map)
@@ -98,7 +105,12 @@ class NameHashGenerator:
         diff_resolved = differ.run_diff()
         print(f"      Mapped {len(diff_resolved)} properties through cross-SDK structural alignment.")
 
-        self.latest_mappings = {}
+        for h in latest_obf:
+            self.previous_output_map.pop(h, None)
+
+        self.latest_mappings = {
+            h: self.base_map[h] for h in latest_obf if h in self.base_map
+        }
         self.latest_mappings.update(ue_resolved)
         self.latest_mappings.update(diff_resolved)
         self.latest_mappings.update(self.custom_overrides)

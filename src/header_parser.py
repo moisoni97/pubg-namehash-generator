@@ -58,8 +58,8 @@ class StructInfo:
         self.clean_super = self._clean_prefix(raw_super) if raw_super else None
         self.module = module
         self.props = props or []
-        self.is_obfuscated = PropertyInfo._check_obfuscated(raw_name)
-        self.hash_key = f"*{raw_name[1:]}" if self.is_obfuscated else None
+        self.is_obfuscated = PropertyInfo._check_obfuscated(self.clean_name)
+        self.hash_key = f"*{self.clean_name[1:]}" if self.is_obfuscated else None
 
     @staticmethod
     def _clean_prefix(name: str) -> str:
@@ -87,7 +87,7 @@ class HeaderParser:
         r"^([A-Za-z0-9_<>:,\s\*]+?)\s+(\w+)(?:\[(\d+)\])?(?:\s*:\s*\d+)?;\s*//\s*(0x[0-9A-Fa-f]+)(?:\((0x[0-9A-Fa-f]+)\))?(?:\s*mask\s*(0x[0-9A-Fa-f]+))?"
     )
     STRUCT_PATTERN = re.compile(
-        r"(?:struct|class) (?:alignas\(\d+\) )?(\w+)(?: : public (\w+))?[^{]*\{([^}]+)\}"
+        r"(?:struct|class) (?:alignas\(\d+\) )?(\w+)(?:\s*:\s*(?:public\s+)?(\w+))?[^{]*\{([^}]+)\}"
     )
 
     def __init__(self, sdk_dump_path: str):
@@ -129,13 +129,15 @@ class HeaderParser:
                 line = line.strip()
                 if not line or line.startswith("struct ") or line.startswith("class ") or line.startswith("union "):
                     continue
-                if "UnknownData" in line or "BITFIELD" in line:
+                if "UnknownData" in line or "BITFIELD" in line or " pad_" in line:
                     continue
 
                 prop_match = self.PROP_PATTERN.match(line)
                 if prop_match:
                     prop_type = prop_match.group(1).strip()
                     prop_name = prop_match.group(2).strip()
+                    if prop_name.startswith("pad_"):
+                        continue
                     arr_dim = int(prop_match.group(3)) if prop_match.group(3) else 1
                     offset = int(prop_match.group(4), 16)
                     size = int(prop_match.group(5), 16) if prop_match.group(5) else 0

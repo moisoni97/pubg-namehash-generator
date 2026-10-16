@@ -375,6 +375,12 @@ class InputAssetScanner:
                             if inferred_prop and not self.HEX_HASH_CLEAN.match(inferred_prop):
                                 self.resolved_mappings[prop_h] = inferred_prop
 
+                elif isinstance(v, str) and m_prop_hash:
+                    prop_h = m_prop_hash.group(0)
+                    if prop_h not in self.resolved_mappings:
+                        if v.startswith("Item_Ammo_") and v.endswith("_C"):
+                            self.resolved_mappings[prop_h] = "AmmoItemClass"
+
                 self._resolve_from_asset_paths(v, k if k.startswith("*") else current_key)
 
     def _derive_class_from_path(self, obj_path: str, asset_name: str) -> Optional[str]:
@@ -544,6 +550,10 @@ class InputAssetScanner:
             if cs_res:
                 return cs_res
 
+        wgc_res = self._resolve_weapon_gun_config_prop(struct_info, prop)
+        if wgc_res:
+            return wgc_res
+
         if "8a3bef8952" in struct_info.raw_name or "TickFunction" in struct_info.raw_name or "ActorTick" in struct_info.raw_name:
             if prop.offset == 0x0040 and prop.type == "float":
                 return "TickInterval"
@@ -599,6 +609,30 @@ class InputAssetScanner:
                         return "Amplitude"
                     if prop.offset == 0x0008:
                         return "InitialOffset"
+
+        return None
+
+    def _resolve_weapon_gun_config_prop(self, struct_info: StructInfo, prop: PropertyInfo) -> Optional[str]:
+        prop_names = {p.name: p for p in struct_info.props}
+        if not ({"GameplayTracerClassOverride", "TimeBetweenShots", "BulletPerFiring"} & set(prop_names.keys())):
+            return None
+
+        if prop.offset == 0x0000 and ("TSubclassOf" in prop.type or prop.type == "FName"):
+            return "AmmoItemClass"
+        if prop.offset == 0x0008 and "ParticleSystem" in prop.type:
+            return "MuzzleParticle"
+
+        tbs = prop_names.get("TimeBetweenShots")
+        if tbs and prop.offset == tbs.offset - 4 and prop.type in ("int32", "int32_t"):
+            return "MagazineCapacity"
+
+        nard = prop_names.get("NoAnimReloadDuration")
+        if nard and prop.offset == nard.offset + 8 and "TArray" in prop.type:
+            return "FiringModes"
+
+        bpf = prop_names.get("BulletPerFiring")
+        if bpf and prop.offset == bpf.offset - 8 and prop.type in ("int32", "int32_t"):
+            return "BurstShotCount"
 
         return None
 
@@ -660,6 +694,9 @@ class InputAssetScanner:
         return ec_offsets.get(offset)
 
     def _infer_from_sibling_pattern(self, struct_info: StructInfo, prop: PropertyInfo, idx: int) -> Optional[str]:
+        if prop.type == "bool":
+            return None
+
         same_type_siblings = []
         clean_siblings = []
         obfuscated_indices = []
@@ -693,6 +730,10 @@ class InputAssetScanner:
             return f"{common_suffix}_{our_abs_idx}" if our_abs_idx >= 0 else common_suffix
 
         if common_prefix and len(common_prefix) >= 3:
+            if common_prefix.rstrip("_").lower() in (
+                "b", "bis", "buse", "bcan", "bhas", "benable", "bshould", "ballow", "bdisable",
+            ):
+                return None
             return f"{common_prefix}_{our_abs_idx}" if our_abs_idx >= 0 else common_prefix
 
         return None
@@ -748,6 +789,9 @@ class InputAssetScanner:
         s = self._struct_by_raw.get(raw)
         if s:
             props = s.props
+            prop_names = {p.name for p in props}
+            if {"GameplayTracerClassOverride", "TimeBetweenShots", "BulletPerFiring"} & prop_names:
+                return "WeaponGunConfig"
             if any("Montage" in p.type or "Anim" in p.type for p in props):
                 return "AnimConfig"
             if any("Particle" in p.type for p in props):
@@ -758,7 +802,6 @@ class InputAssetScanner:
                 return "RecoilConfig"
             if any("PhysicalSurface" in p.type for p in props):
                 return "SurfaceModifierMap"
-            prop_names = {p.name for p in props}
             if "Material" in prop_names and "Size" in prop_names:
                 return "DecalConfig"
             if "Pitch" in prop_names or "Yaw" in prop_names:
@@ -936,6 +979,8 @@ class InputAssetScanner:
             for p in s.props:
                 if p.name == h_clean:
                     parent_clean = s.clean_name or s.raw_name.lstrip("U").lstrip("F").lstrip("A")
+                    if parent_clean.startswith("_") or parent_clean.startswith("*"):
+                        continue
                     if p.type.startswith("bool"):
                         return f"b{parent_clean}Param"
                     if p.type in ("float", "double"):
