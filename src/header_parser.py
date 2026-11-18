@@ -67,6 +67,8 @@ class StructInfo:
             return name
         if len(name) > 1 and name[0] in ("F", "U", "A") and (name[1].isupper() or name[1] == "_"):
             return name[1:]
+        if len(name) == 12 and name.startswith("E_"):
+            return name[1:]
         return name
 
     def to_dict(self) -> Dict[str, Any]:

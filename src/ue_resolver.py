@@ -14,36 +14,6 @@ class UEResolver:
         ("UDataTable", 0x0028): "RowStruct",
         ("UDataTable", 0x0030): "RowStruct",
 
-        # CameraShake
-        ("CameraShake", 0x0028): "bSingleInstance",
-        ("CameraShake", 0x002C): "OscillationDuration",
-        ("CameraShake", 0x0030): "bSingleInstance",
-        ("CameraShake", 0x0030): "OscillationBlendInTime",
-        ("CameraShake", 0x0034): "OscillationDuration",
-        ("CameraShake", 0x0034): "OscillationBlendOutTime",
-        ("CameraShake", 0x0038): "OscillationBlendInTime",
-        ("CameraShake", 0x0038): "RotOscillation",
-        ("CameraShake", 0x003C): "OscillationBlendOutTime",
-        ("CameraShake", 0x0040): "RotOscillation",
-        ("CameraShake", 0x005C): "LocOscillation",
-        ("CameraShake", 0x0064): "LocOscillation",
-        ("CameraShake", 0x0080): "FOVOscillation",
-        ("CameraShake", 0x0088): "FOVOscillation",
-        ("UCameraShake", 0x0028): "bSingleInstance",
-        ("UCameraShake", 0x002C): "OscillationDuration",
-        ("UCameraShake", 0x0030): "bSingleInstance",
-        ("UCameraShake", 0x0030): "OscillationBlendInTime",
-        ("UCameraShake", 0x0034): "OscillationDuration",
-        ("UCameraShake", 0x0034): "OscillationBlendOutTime",
-        ("UCameraShake", 0x0038): "OscillationBlendInTime",
-        ("UCameraShake", 0x0038): "RotOscillation",
-        ("UCameraShake", 0x003C): "OscillationBlendOutTime",
-        ("UCameraShake", 0x0040): "RotOscillation",
-        ("UCameraShake", 0x005C): "LocOscillation",
-        ("UCameraShake", 0x0064): "LocOscillation",
-        ("UCameraShake", 0x0080): "FOVOscillation",
-        ("UCameraShake", 0x0088): "FOVOscillation",
-
         # FOscillator
         ("FOscillator", 0x0000): "Amplitude",
         ("FOscillator", 0x0004): "Frequency",
@@ -61,28 +31,16 @@ class UEResolver:
         ("USceneComponent", 0x0220): "AttachSocketName",
 
         # SimpleConstructionScript & SCS_Node
-        ("SimpleConstructionScript", 0x0050): "RootNodes",
-        ("USimpleConstructionScript", 0x0050): "RootNodes",
         ("SCS_Node", 0x0028): "ComponentClass",
         ("SCS_Node", 0x0030): "ComponentTemplate",
         ("USCS_Node", 0x0028): "ComponentClass",
         ("USCS_Node", 0x0030): "ComponentTemplate",
 
         # Brush & Volume
-        ("Brush", 0x0400): "BrushType",
-        ("ABrush", 0x0400): "BrushType",
         ("Volume", 0x0400): "BrushType",
         ("AVolume", 0x0400): "BrushType",
         ("PostProcessVolume", 0x0400): "BrushType",
         ("APostProcessVolume", 0x0400): "BrushType",
-        ("Brush", 0x0404): "BrushColor",
-        ("ABrush", 0x0404): "BrushColor",
-        ("Brush", 0x0408): "PolyFlags",
-        ("ABrush", 0x0408): "PolyFlags",
-        ("Brush", 0x0410): "Brush",
-        ("ABrush", 0x0410): "Brush",
-        ("Brush", 0x0418): "BrushComponent",
-        ("ABrush", 0x0418): "BrushComponent",
 
         # AkAudio
         ("AkAudioBank", 0x0030): "AutoLoad",
@@ -91,6 +49,37 @@ class UEResolver:
         # ActorTickFunction
         ("ActorTickFunction", 0x0040): "TickInterval",
         ("FActorTickFunction", 0x0040): "TickInterval",
+    }
+
+    RELATIVE_ENGINE_MAP = {
+        "DataTable": {
+            0x0000: ("RowStruct", ("UScriptStruct", "*")),
+        },
+        "CameraShake": {
+            0x0000: ("bSingleInstance", ("bool",)),
+            0x0004: ("OscillationDuration", ("float", "double")),
+            0x0008: ("OscillationBlendInTime", ("float", "double")),
+            0x000C: ("OscillationBlendOutTime", ("float", "double")),
+            0x0010: ("RotOscillation", None),
+            0x0034: ("LocOscillation", None),
+            0x0058: ("FOVOscillation", None),
+        },
+        "SCS_Node": {
+            0x0000: ("ComponentClass", ("TSubclassOf", "*")),
+            0x0008: ("ComponentTemplate", ("*",)),
+        },
+        "SimpleConstructionScript": {
+            0x0000: ("RootNodes", ("TArray",)),
+            0x0010: ("AllNodes", ("TArray",)),
+            0x0020: ("DefaultSceneRootNode", ("USCS_Node*", "*")),
+        },
+        "Brush": {
+            0x0000: ("BrushType", ("E_", "EBrushType", "uint8_t")),
+            0x0004: ("BrushColor", ("FColor",)),
+            0x0008: ("PolyFlags", ("int32_t", "uint32_t")),
+            0x0010: ("Brush", ("UModel*",)),
+            0x0018: ("BrushComponent", ("UBrushComponent*",)),
+        },
     }
 
     STRUCT_SIGNATURES = {
@@ -160,18 +149,32 @@ class UEResolver:
         for s_name, struct_info in structs.items():
             existing_names = {p.name for p in struct_info.props if not p.is_obfuscated}
             used_names = set(existing_names)
+            base_off = struct_info.props[0].offset if struct_info.props else 0
+            clean_s = struct_info.clean_name or s_name
+            rel_map = self.RELATIVE_ENGINE_MAP.get(clean_s) or self.RELATIVE_ENGINE_MAP.get(s_name)
+
             for prop in struct_info.props:
                 if prop.is_obfuscated:
-                    key = (s_name, prop.offset)
-                    raw_key = (struct_info.raw_name, prop.offset)
-                    clean_key = (struct_info.clean_name or s_name, prop.offset)
                     name = None
-                    if key in self.CORE_ENGINE_MAP:
-                        name = self.CORE_ENGINE_MAP[key]
-                    elif raw_key in self.CORE_ENGINE_MAP:
-                        name = self.CORE_ENGINE_MAP[raw_key]
-                    elif clean_key in self.CORE_ENGINE_MAP:
-                        name = self.CORE_ENGINE_MAP[clean_key]
+                    if rel_map is not None:
+                        rel_off = prop.offset - base_off
+                        if rel_off in rel_map:
+                            cand_name, type_Check = rel_map[rel_off]
+                            if type_Check is None or any(tc in prop.type for tc in type_Check) or (
+                                "bool" in type_Check and prop.is_bitfield
+                            ):
+                                name = cand_name
+
+                    if not name:
+                        key = (s_name, prop.offset)
+                        raw_key = (struct_info.raw_name, prop.offset)
+                        clean_key = (clean_s, prop.offset)
+                        if key in self.CORE_ENGINE_MAP:
+                            name = self.CORE_ENGINE_MAP[key]
+                        elif raw_key in self.CORE_ENGINE_MAP:
+                            name = self.CORE_ENGINE_MAP[raw_key]
+                        elif clean_key in self.CORE_ENGINE_MAP:
+                            name = self.CORE_ENGINE_MAP[clean_key]
 
                     if name:
                         if name in used_names:

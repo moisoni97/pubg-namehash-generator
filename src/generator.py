@@ -64,6 +64,8 @@ class NameHashGenerator:
             usmap_structs = parse_usmap(self.usmap_path)
             print(f"      Parsed {len(usmap_structs)} reference structs from USMAP.")
 
+        ue_resolver = UEResolver(self.ue4_reference_path)
+
         prev_structs: Dict[str, StructInfo] = {}
         prev_resolved: Dict[str, str] = {}
         if self.previous_sdk_path and os.path.exists(self.previous_sdk_path):
@@ -73,14 +75,14 @@ class NameHashGenerator:
 
             if usmap_structs:
                 prev_resolved = diff_usmap_to_sdk(usmap_structs, prev_structs, self.base_map)
-                print(f"      Resolved {len(prev_resolved)} properties for Previous SDK from USMAP/BaseMap.")
+            prev_resolved.update(ue_resolver.resolve_engine_structs(prev_structs))
+            print(f"      Resolved {len(prev_resolved)} properties for Previous SDK from USMAP/BaseMap/UEResolver.")
 
         print(f"\n[3/6] Parsing Latest SDK: {os.path.basename(self.latest_sdk_path)}...")
         latest_structs = parse_sdk(self.latest_sdk_path)
         print(f"      Parsed {len(latest_structs)} structs from Latest SDK.")
 
         print("\n[4/6] Resolving Standard UE4 Engine Reflection...")
-        ue_resolver = UEResolver(self.ue4_reference_path)
         ue_resolved = ue_resolver.resolve_engine_structs(latest_structs)
         self.latest_rowstruct = next((k for k, v in ue_resolved.items() if v == "RowStruct"), None)
         print(f"      Resolved {len(ue_resolved)} properties via UE4 Engine Reflection.")
@@ -111,14 +113,15 @@ class NameHashGenerator:
         self.latest_mappings = {
             h: self.base_map[h] for h in latest_obf if h in self.base_map
         }
-        self.latest_mappings.update(ue_resolved)
         self.latest_mappings.update(diff_resolved)
+        self.latest_mappings.update(ue_resolved)
         self.latest_mappings.update(self.custom_overrides)
 
         self.all_mappings = {}
         self.all_mappings.update(self.base_map)
         self.all_mappings.update(self.previous_output_map)
         self.all_mappings.update(prev_resolved)
+        self.all_mappings.update(differ.prev_resolved_mappings)
         self.all_mappings.update(self.latest_mappings)
 
         # 6. Scan and resolve input asset files
